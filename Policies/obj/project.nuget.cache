@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kx14TEp0PTYSVSs/n6yUqZfbe2Z7WXuOvU13hvaiNSj4E2M2QvXDb8J3icDhVdYAfbhQ4waMVNKXQnWe/gU0+g==",
+  "success": true,
+  "projectFilePath": "D:\\home\\dlerps\\dev\\AsyncPlayground\\Policies\\Policies.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\d\\.nuget\\packages\\polly\\7.2.1\\polly.7.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

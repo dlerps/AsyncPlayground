@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policies", "Policies\Policies.csproj", "{493503AA-E1CB-471D-A199-A35AB8FCFEEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandling", "ErrorHandling\ErrorHandling.csproj", "{413FD84A-5298-4FE9-995D-A6BBBC5EA371}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{493503AA-E1CB-471D-A199-A35AB8FCFEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493503AA-E1CB-471D-A199-A35AB8FCFEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493503AA-E1CB-471D-A199-A35AB8FCFEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493503AA-E1CB-471D-A199-A35AB8FCFEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413FD84A-5298-4FE9-995D-A6BBBC5EA371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413FD84A-5298-4FE9-995D-A6BBBC5EA371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413FD84A-5298-4FE9-995D-A6BBBC5EA371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413FD84A-5298-4FE9-995D-A6BBBC5EA371}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

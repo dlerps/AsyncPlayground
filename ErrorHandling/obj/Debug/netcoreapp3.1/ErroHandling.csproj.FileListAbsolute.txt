@@ -1,0 +1,13 @@
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.exe
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.deps.json
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.runtimeconfig.json
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.runtimeconfig.dev.json
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.dll
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\bin\Debug\netcoreapp3.1\ErroHandling.pdb
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.csprojAssemblyReference.cache
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.AssemblyInfoInputs.cache
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.AssemblyInfo.cs
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.csproj.CoreCompileInputs.cache
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.dll
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.pdb
+D:\home\dlerps\dev\AsyncPlayground\ErroHandling\obj\Debug\netcoreapp3.1\ErroHandling.genruntimeconfig.cache
