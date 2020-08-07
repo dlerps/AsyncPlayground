@@ -9,13 +9,13 @@ namespace ErrorHandling.Scenarios
     {
         private static FailingService FailingService { get; } = new FailingService();
         
-        public static async Task RunAggregate()
+        public static async Task RunAggregateAwaited()
         {
             PlaygroundUtils.Start("Aggregate");
             
             var tasks = new[]
             {
-                FailingService.ThrowSomething("normal"),
+                FailingService.ThrowSomethingAwaited("instant awaited"),
                 FailingService.ThrowAfter(120)
             };
 
@@ -25,14 +25,56 @@ namespace ErrorHandling.Scenarios
             {
                 await whenAll;
             }
-            catch
+            catch (Exception e)
             {
-                PlaygroundUtils.PrintExceptionInfo(whenAll.Exception);
-                
-                Console.WriteLine($"Collected Exceptions ({whenAll.Exception?.InnerExceptions.Count}):");
-                
-                foreach (var inner in whenAll.Exception!.InnerExceptions)
+                HandleAggregateTaskException(whenAll, e);
+            }
+        }
+        
+        public static async Task RunAggregateNonAwaited()
+        {
+            PlaygroundUtils.Start("Aggregate Non-Awaited");
+            
+            Task whenAll = null;
+
+            try
+            {
+                var tasks = new[]
+                {
+                    FailingService.ThrowSomething("instant awaited"),
+                    FailingService.ThrowAfter(120)
+                };
+
+                whenAll = Task.WhenAll(tasks);
+                await whenAll;
+            }
+            catch (Exception e)
+            {
+                HandleAggregateTaskException(whenAll, e);
+            }
+        }
+
+        private static void HandleAggregateTaskException(Task whenAllTask, Exception exception)
+        {
+            if (whenAllTask?.Exception != null)
+            {
+                PlaygroundUtils.PrintExceptionInfo(whenAllTask.Exception);
+
+                Console.WriteLine($"Collected Exceptions ({whenAllTask.Exception?.InnerExceptions.Count}):");
+
+                foreach (var inner in whenAllTask.Exception!.InnerExceptions)
                     PlaygroundUtils.PrintExceptionInfo(inner);
+            }
+            
+            if (exception != null)
+            {
+                Console.WriteLine("Thrown directly:");
+                PlaygroundUtils.PrintExceptionInfo(exception);
+            }
+
+            if (whenAllTask?.Exception == null && exception == null)
+            {
+                Console.WriteLine("No exception caught.......");
             }
         }
     }

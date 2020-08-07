@@ -14,7 +14,8 @@ namespace ErrorHandling
             // await AwaitScenario.RunMultipleTasks();
             // await AwaitScenario.RunSingleVoidTask();
 
-            await AggregateScenario.RunAggregate();
+            await AggregateScenario.RunAggregateAwaited();
+            await AggregateScenario.RunAggregateNonAwaited();
         }
     }
 }
