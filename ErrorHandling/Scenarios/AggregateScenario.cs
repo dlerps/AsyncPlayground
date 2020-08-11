@@ -15,6 +15,7 @@ namespace ErrorHandling.Scenarios
             
             var tasks = new[]
             {
+                FailingService.ThrowAfter(200),
                 FailingService.ThrowSomethingAwaited("instant awaited"),
                 FailingService.ThrowAfter(120)
             };
