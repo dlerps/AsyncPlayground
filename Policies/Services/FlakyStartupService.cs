@@ -30,7 +30,6 @@ namespace Policies.Services
                 throw new FlakyStartupException(_startupAttempts);
             
             Console.WriteLine($"FLAKY startup service finally got started after {_startupAttempts} attempts...");
-            //return Task.CompletedTask;
         }
     }
 }

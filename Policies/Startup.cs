@@ -61,10 +61,14 @@ namespace Policies
             ISlowStartupService slow,
             ILogger<Startup> logger)
         {
+            // Starting services in same order: Flaky -> Slow -> Quick
             //StartServicesAsyncWithAwait(flaky, quick, slow, logger).GetAwaiter().GetResult();
             //StartServicesAsyncInParallel(flaky, quick, slow, logger).GetAwaiter().GetResult();
+            //StartServicesTasks(flaky, quick, slow, logger).GetAwaiter().GetResult();
             //StartServicesSync(flaky, quick, slow, logger);
-            StartServicesAsyncInSync(flaky, quick, slow, logger);
+            //StartServicesAsyncInSync(flaky, quick, slow, logger);
+            
+            Console.WriteLine("Doing other stuff....");
             
             if (env.IsDevelopment())
             {
@@ -93,9 +97,35 @@ namespace Policies
 
             var cancellationTokenSource = new CancellationTokenSource();
             
+            // Awaits block the executing thread.
+            // Flaky has to finish before Slow starts
+            // Slow has to finish before Quick starts
+            
             await AsyncRetryPolicy.ExecuteAsync(() => flaky.Start(cancellationTokenSource.Token));
             await AsyncRetryPolicy.ExecuteAsync(() => slow.Start(cancellationTokenSource.Token));
             await AsyncRetryPolicy.ExecuteAsync(() => quick.Start(cancellationTokenSource.Token));
+        }
+        
+        private Task StartServicesTasks(
+            IFlakyStartupService flaky,
+            IQuickStartupService quick,
+            ISlowStartupService slow,
+            ILogger<Startup> logger)
+        {
+            logger.LogInformation("Starting Polly Stuff");
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            
+            // Awaits block the executing thread.
+            // Flaky has to finish before Slow starts
+            // Slow has to finish before Quick starts
+            // possible return values are not available due to missing await
+            
+            var t1 = AsyncRetryPolicy.ExecuteAsync(() => flaky.Start(cancellationTokenSource.Token));
+            var t2 = AsyncRetryPolicy.ExecuteAsync(() => slow.Start(cancellationTokenSource.Token));
+            var t3 = AsyncRetryPolicy.ExecuteAsync(() => quick.Start(cancellationTokenSource.Token));
+
+            return Task.WhenAll(new[] { t1, t2, t3 });
         }
         
         private async Task StartServicesAsyncInParallel(
@@ -107,6 +137,10 @@ namespace Policies
             logger.LogInformation("Starting Polly Stuff");
 
             var cancellationTokenSource = new CancellationTokenSource();
+            
+            // Execution tasks are started in parallel if thread has enough capacities
+            // Flaky or Fast finish first
+            // Slow and Flaky do not block
             
             var t1 = AsyncRetryPolicy.ExecuteAsync(() => flaky.Start(cancellationTokenSource.Token));
             var t2 = AsyncRetryPolicy.ExecuteAsync(() => slow.Start(cancellationTokenSource.Token));
@@ -127,6 +161,10 @@ namespace Policies
 
             var cancellationTokenSource = new CancellationTokenSource();
             
+            // Calls block the executing thread.
+            // Flaky has to finish before Slow starts
+            // Slow has to finish before Quick starts
+            
             RetryPolicy.Execute(() => flaky.Start(cancellationTokenSource.Token));
             RetryPolicy.Execute(() => slow.Start(cancellationTokenSource.Token));
             RetryPolicy.Execute(() => quick.Start(cancellationTokenSource.Token));
@@ -141,6 +179,8 @@ namespace Policies
             logger.LogInformation("Starting Polly Stuff");
 
             var cancellationTokenSource = new CancellationTokenSource();
+            
+            // Starts tasks if function is really async (needs await)
             
             AsyncRetryPolicy.ExecuteAsync(() => flaky.Start(cancellationTokenSource.Token));
             AsyncRetryPolicy.ExecuteAsync(() => slow.Start(cancellationTokenSource.Token));

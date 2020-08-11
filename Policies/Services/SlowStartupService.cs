@@ -10,6 +10,7 @@ namespace Policies.Services
         
         public async Task Start(CancellationToken token)
         {
+            Console.WriteLine("Starting SLOW Service");
             await Task.Delay(_delay, token);
             Console.WriteLine("SLOW startup service is ready for action!");
         }
